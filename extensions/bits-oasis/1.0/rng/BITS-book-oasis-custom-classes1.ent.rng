@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!-- MODULE:    Book Interchange DTD with OASIS and XHTML Tables -->
+<!-- Customize Classes Module -->
+<!-- VERSION:   BITS 1.0 -->
+<!-- DATE:      December 2013 -->
+<!---->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- PUBLIC DOCUMENT TYPE DEFINITION -->
+<!-- TYPICAL INVOCATION -->
+<!--
+  "-//NLM//DTD BITS Book Interchange DTD with OASIS and XHTML Tables Customize Classes Module v1.0 20130520//EN"
+  Delivered as file "BITS-book-oasis-custom-classes1.ent"
+-->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- SYSTEM:     Book Interchange Tag Suite -->
+<!---->
+<!-- PURPOSE:    To declare the Parameter Entities (PEs) used to -->
+<!-- over-ride the JATS DTD Suite default named -->
+<!-- element classes. -->
+<!---->
+<!-- Note: Since PEs must be declared before they -->
+<!-- are used, this module must be called before the -->
+<!--              NISO JATS default classes module as well as before -->
+<!-- the content modules that declare elements. -->
+<!---->
+<!-- TAG SET SPONSOR -->
+<!-- National Center for Biotechnology -->
+<!-- Information (NCBI) -->
+<!-- National Library of Medicine (NLM) -->
+<!---->
+<!-- CREATED FOR: -->
+<!-- This DTD was created as a superset customization -->
+<!-- of the ANSI/NISO JATS Z39.96-2012 Version 1.0 -->
+<!-- Journal Article Tag Set. -->
+<!---->
+<!-- Digital archives and publishers may use the -->
+<!-- DTD as is for markup of books or book-like -->
+<!-- material for archiving and transferring -->
+<!-- such material between archives or they may create -->
+<!-- a custom XML DTD from the BITS Suite for -->
+<!-- these purposes. -->
+<!---->
+<!-- This DTD is in the public domain. An organization -->
+<!-- that wishes to create its own DTD from the suite -->
+<!-- may do so without permission from NLM. -->
+<!---->
+<!-- The suite has been set up to be extended using a -->
+<!-- new DTD file and new DTD-specific customization -->
+<!-- modules to redefine the many Parameter Entities. -->
+<!-- Do not modify the suite directly or redistribute -->
+<!-- modified versions of the suite. -->
+<!---->
+<!-- In the interest of maintaining consistency and -->
+<!-- clarity for potential users, NLM requests: -->
+<!---->
+<!-- 1. If you create a DTD from the BITS DTD Suite -->
+<!-- and intend to stay compatible with the suite, -->
+<!-- then please include the following statement -->
+<!-- as a comment in all of your DTD modules: -->
+<!-- "Created from, and fully compatible with, -->
+<!-- the Book Interchange Tag Suite (BITS). -->
+<!---->
+<!-- 2. If you alter one or more modules of the suite, -->
+<!-- then please rename your version and all its -->
+<!-- modules to avoid any confusion with the -->
+<!-- original suite. Also, please include the -->
+<!-- following statement as a comment in all your -->
+<!-- DTD modules: -->
+<!-- "Based in part on, but not fully compatible -->
+<!-- with, the Book Interchange Tag Suite -->
+<!-- (BITS)." -->
+<!---->
+<!-- ORIGINAL CREATION DATE: -->
+<!-- April 2012 -->
+<!---->
+<!-- CREATED BY: Mulberry Technologies, Inc. for the National -->
+<!-- National Center for Biotechnology Information -->
+<!-- (NCBI), a center of the US National Library of -->
+<!-- Medicine (NLM). -->
+<!---->
+<!-- The BITS Book Interchange DTD is built from the -->
+<!-- Journal Archiving and Interchange DTD of the -->
+<!-- ANSI/NISO Journal Article Tag Suite (JATS) -->
+<!-- Version 1.0 (Z39.96-2012). -->
+<!-- ANSI/NISO JATS DTD modules. -->
+<!---->
+<!-- Suggestions for refinements and enhancements to -->
+<!-- this DTD should be sent in email to: -->
+<!-- bits@ncbi.nlm.nih.gov -->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- DTD VERSION/CHANGE HISTORY -->
+<!-- ============================================================= -->
+<!--
+  
+  Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
+  
+       =============================================================     
+-->
+<!-- ============================================================= -->
+<!-- BOOK METADATA CLASSES -->
+<!-- ============================================================= -->
+<!-- CONTRIBUTOR INFORMATION -->
+<!--
+  Metadata about a contributor
+  (from Publishing)
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="contrib-info.class">
+    <choice>
+      <ref name="address"/>
+      <ref name="aff"/>
+      <ref name="aff-alternatives"/>
+      <ref name="author-comment"/>
+      <ref name="bio"/>
+      <ref name="email"/>
+      <ref name="etal"/>
+      <ref name="ext-link"/>
+      <ref name="fn"/>
+      <ref name="on-behalf-of"/>
+      <ref name="role"/>
+      <ref name="uri"/>
+      <ref name="xref"/>
+    </choice>
+  </define>
+  <!-- EVENT CLASS ELEMENTS -->
+  <!-- Dates and other matters of history -->
+  <define name="event.class">
+    <ref name="event"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- INLINE CLASSES -->
+  <!-- ============================================================= -->
+  <!-- PHRASE CLASS ELEMENTS -->
+  <!--
+    Small inline elements, that surround a word
+    or phrase in the text because the subject
+    (content) should be identified as something
+    special or different
+  -->
+  <define name="phrase.class">
+    <choice>
+      <ref name="abbrev"/>
+      <ref name="index-term"/>
+      <ref name="index-term-range-end"/>
+      <ref name="milestone-end"/>
+      <ref name="milestone-start"/>
+      <ref name="named-content"/>
+      <ref name="styled-content"/>
+    </choice>
+  </define>
+  <!-- ============================================================= -->
+  <!-- PRESENTATION INFO CLASSES -->
+  <!-- ============================================================= -->
+  <!-- X-GENERATED PUNCTUATION CLASS -->
+  <!--
+    Class containing a single element that will
+    hold generated punctuation or other
+    generatable text, for example, the commas or
+    semicolons between keywords.
+  -->
+  <define name="x.class">
+    <ref name="x"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- CITATION CLASSES (references.ent) -->
+  <!-- ============================================================= -->
+  <!-- CITATION CLASS ELEMENTS -->
+  <!--
+    Reference to an external document, as used
+    within, for example, the text of a
+    paragraph                                  
+    (from Publishing; removed <nlm-citation>)
+  -->
+  <define name="citation.class">
+    <choice>
+      <ref name="citation-alternatives"/>
+      <ref name="element-citation"/>
+      <ref name="mixed-citation"/>
+    </choice>
+  </define>
+  <!-- CITATION MINUS ALTERNATIVES CLASS ELEMENTS -->
+  <!--
+    All the citation elements except the
+    <citation-alternatives> element.
+    (from Publishing; removed <nlm-citation>)
+  -->
+  <define name="citation-minus-alt.class">
+    <choice>
+      <ref name="element-citation"/>
+      <ref name="mixed-citation"/>
+    </choice>
+  </define>
+  <!-- CITATION ADDITIONS CLASS ELEMENTS -->
+  <!--
+    Elements that are not part of the broader
+    references.class, but that need to be part
+    of the model for citations.
+  -->
+  <define name="citation-additions.class">
+    <ref name="string-date"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BLOCK DISPLAY CLASSES -->
+  <!-- ============================================================= -->
+  <!-- DISPLAY CLASS ELEMENTS -->
+  <!--
+    Graphical or other image-related elements.
+    The display elements may occur within
+    the text of a table cell or paragraph
+    although they are typically at the same
+    hierarchical level as a paragraph.
+  -->
+  <define name="block-display.class">
+    <choice>
+      <ref name="address"/>
+      <ref name="alternatives"/>
+      <ref name="answer"/>
+      <ref name="answer-set"/>
+      <ref name="array"/>
+      <ref name="boxed-text"/>
+      <ref name="chem-struct-wrap"/>
+      <ref name="code"/>
+      <ref name="fig"/>
+      <ref name="fig-group"/>
+      <ref name="graphic"/>
+      <ref name="media"/>
+      <ref name="preformat"/>
+      <ref name="question"/>
+      <ref name="question-wrap"/>
+      <ref name="supplementary-material"/>
+      <ref name="table-wrap"/>
+      <ref name="table-wrap-group"/>
+    </choice>
+  </define>
+  <!-- QUESTION AND ANSWER CLASS -->
+  <!--
+    Questions and answers (also in block display
+    class, for use in other places).
+  -->
+  <define name="question-answer.class">
+    <choice>
+      <ref name="answer"/>
+      <ref name="answer-set"/>
+      <ref name="question"/>
+      <ref name="question-wrap"/>
+    </choice>
+  </define>
+  <!-- REST OF PARAGRAPH CLASS (MINUS PARAGRAPH) -->
+  <!--
+    Information for the reader that is at the
+    same structural level as a Paragraph.
+    Contains all paragraph-level objects that are
+    not also used inside tables and excepting
+    also the paragraph element itself.
+    Publishing removed <ack>.
+  -->
+  <define name="rest-of-para.class">
+    <choice>
+      <ref name="ack"/>
+      <ref name="disp-quote"/>
+      <ref name="speech"/>
+      <ref name="statement"/>
+      <ref name="verse-group"/>
+    </choice>
+  </define>
+  <!-- ============================================================= -->
+  <!-- STRUCTURAL CLASSES -->
+  <!-- ============================================================= -->
+  <!-- BOOK PART CLASS -->
+  <!--
+    Holds the <book-part> element, for use in
+    content models.
+  -->
+  <define name="book-part.class">
+    <choice>
+      <ref name="book-part"/>
+      <ref name="xi.include"/>
+    </choice>
+  </define>
+  <!-- BACK MATTER ONLY CLASS -->
+  <!--
+    Ancillary elements, used in back matter of
+    a book or book part.
+  -->
+  <define name="back-only.class">
+    <choice>
+      <ref name="app"/>
+      <ref name="app-group"/>
+      <ref name="floats-group"/>
+      <ref name="index"/>
+      <ref name="index-group"/>
+      <ref name="ref-list"/>
+    </choice>
+  </define>
+  <!-- FRONT ONLY CLASS -->
+  <!--
+    Ancillary elements, used in front matter of
+    a book or book part.
+  -->
+  <define name="front-only.class">
+    <choice>
+      <ref name="front-matter-part"/>
+      <ref name="foreword"/>
+      <ref name="preface"/>
+    </choice>
+  </define>
+  <!-- FRONT AND BACK CLASS -->
+  <!--
+    Ancillary elements, typically used in the
+    front or back matter of an article, but
+    also as part of book metadata.
+  -->
+  <define name="front-back.class">
+    <ref name="notes"/>
+  </define>
+  <!-- BOTH FRONT AND BACK MATTER CLASS -->
+  <!--
+    Ancillary elements, typically used in the
+    back matter of a <book> or a <book-part>.
+  -->
+  <define name="both-front-back.class">
+    <choice>
+      <ref name="ack"/>
+      <ref name="bio"/>
+      <ref name="dedication"/>
+      <ref name="fn-group"/>
+      <ref name="glossary"/>
+      <ref name="toc"/>
+      <ref name="toc-group"/>
+    </choice>
+  </define>
+  <!-- SECTION BACK MATTER CLASS -->
+  <!--
+    Ancillary elements, typically used in the
+    back matter of a section, etc.
+    Added <sig-block> to Publishing.
+  -->
+  <define name="sec-back.class">
+    <choice>
+      <ref name="fn-group"/>
+      <ref name="glossary"/>
+      <ref name="ref-list"/>
+      <ref name="sig-block"/>
+    </choice>
+  </define>
+  <!-- SIGNATURE BLOCK CLASS -->
+  <!--
+    Class to hold just the signature block,
+    which is used in the backs of sections and
+    book-parts, but not in the back of books.
+  -->
+  <define name="sig-block.class">
+    <ref name="sig-block"/>
+  </define>
+  <!-- XINCLUDE CLASS -->
+  <!--
+    Class to hold just the <xi:include> element
+    so that it can be used in book front matter
+    as well as other places.
+  -->
+  <define name="xinclude.class">
+    <ref name="xi.include"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- TABLE CLASSES -->
+  <!-- ============================================================= -->
+  <!-- ALTERNATIVES DISPLAY CLASS ELEMENTS -->
+  <!--
+    Display elements that can be alternatives to
+    each  other inside an alternatives element.
+      XHTML Table Model    table
+      OASIS CALS Table     oasis:table
+  -->
+  <define name="alternatives-display.class">
+    <choice>
+      <ref name="array"/>
+      <ref name="chem-struct"/>
+      <ref name="code"/>
+      <ref name="graphic"/>
+      <ref name="inline-graphic"/>
+      <ref name="inline-supplementary-material"/>
+      <ref name="media"/>
+      <ref name="preformat"/>
+      <ref name="private-char"/>
+      <ref name="supplementary-material"/>
+      <ref name="table"/>
+      <ref name="oasis.table"/>
+      <ref name="textual-form"/>
+    </choice>
+  </define>
+  <!-- TABLE CLASS ELEMENTS -->
+  <!--
+    Elements that will be used to contain the
+    rows and columns inside the Table Wrapper
+    element <tbl>.  The following elements can
+    be set up for inclusion:
+      XHTML Table Model    table
+      OASIS CALS Table     oasis:table
+  -->
+  <define name="table.class">
+    <choice>
+      <ref name="table"/>
+      <ref name="oasis.table"/>
+    </choice>
+  </define>
+  <!-- TABLE BODY CLASS -->
+  <!--
+    To include just a table body <tbody> 
+    element. Both XHTML and OASIS table types.
+  -->
+  <define name="tbody.class">
+    <choice>
+      <ref name="tbody"/>
+      <ref name="oasis.tbody"/>
+    </choice>
+  </define>
+  <!-- ============================================================= -->
+  <!-- INDEX CLASSES -->
+  <!-- ============================================================= -->
+  <!-- INDEX CLASS -->
+  <!-- Used for grouping multiple Indexes. -->
+  <define name="index.class">
+    <ref name="index"/>
+  </define>
+  <!-- INDEX DIVISION CLASS -->
+  <!--
+    Division, typically for the purposes of
+    display, in a structural index, for example
+    a division holding the heading "A" and
+    all of the initial alphabetically
+    arranged index entries.
+  -->
+  <define name="index-div.class">
+    <ref name="index-div"/>
+  </define>
+  <!-- INDEX ENTRY CLASS -->
+  <!-- Entry in a structural Index. -->
+  <define name="index-entry.class">
+    <ref name="index-entry"/>
+  </define>
+  <!-- NAVIGATION POINTER CLASS -->
+  <!--
+    Navigation pointer for use in a structural 
+    Index or table of contents.
+  -->
+  <define name="nav-pointer.class">
+    <ref name="nav-pointer"/>
+  </define>
+  <!-- SEE AND SEE-ALSO ENTRY CLASS -->
+  <!--
+    See (use) and see-also (related) entries
+    in a structural Index.
+  -->
+  <define name="see-also-see-entry.class">
+    <choice>
+      <ref name="see-entry"/>
+      <ref name="see-also-entry"/>
+    </choice>
+  </define>
+  <!-- ============================================================= -->
+  <!-- TABLE OF CONTENTS CLASSES -->
+  <!-- ============================================================= -->
+  <!-- TABLE OF CONTENTS CLASS -->
+  <!-- Used for grouping multiple Tables of Contents. -->
+  <define name="toc.class">
+    <ref name="toc"/>
+  </define>
+  <!-- TABLE OF CONTENTS DIVISION CLASS -->
+  <!--
+    Division, typically for the purposes of
+    display, in a structural ToC, for example
+    a division holding the first Part of a
+    3-part book, and the titles of all the
+    chapters in that Part.
+  -->
+  <define name="toc-div.class">
+    <ref name="toc-div"/>
+  </define>
+  <!-- TABLE OF CONTENTS ENTRY CLASS -->
+  <!-- Entry in a structural Table of Contents. -->
+  <define name="toc-entry.class">
+    <ref name="toc-entry"/>
+  </define>
+  <!-- ABTRACT CLASS FOR TABEL OF CONTENTS -->
+  <!--
+    Used to add the <abstract> and
+    <trans-abstract> elements to a Table of
+    Contents entry <toc-entry>.
+  -->
+  <define name="toc-abstract.class">
+    <choice>
+      <ref name="abstract"/>
+      <ref name="trans-abstract"/>
+    </choice>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BOTH TABLE OF CONTENTS AND INDEX CLASSES -->
+  <!-- ============================================================= -->
+  <!-- STRUCTURAL LINKING CLASS -->
+  <!--
+    Elements that might be used to make a link
+    in a structural Table of Contents, Index,
+    or similar non-generated structure.
+  -->
+  <define name="struct-link.class">
+    <choice>
+      <ref name="ext-link"/>
+      <ref name="nav-pointer"/>
+      <ref name="nav-pointer-group"/>
+    </choice>
+  </define>
+</grammar>
+<!-- ================== End BITS Book Classes Customization ====== -->

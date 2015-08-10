@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!-- MODULE:    BITS Structural Table of Contents Module -->
+<!-- VERSION:   BITS 1.0 -->
+<!-- DATE:      December 2013 -->
+<!---->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- PUBLIC DOCUMENT TYPE DEFINITION -->
+<!-- TYPICAL INVOCATION -->
+<!--
+  "-//NLM//DTD BITS Structural Table of Contents Module v1.0 20131225//EN"
+  Delivered as file "BITS-toc1.ent"
+-->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- SYSTEM:     Book Interchange Tag Suite -->
+<!---->
+<!-- PURPOSE:    Defines the elements, attributes, and parameter -->
+<!-- entities specific for a structural Table of -->
+<!-- Contents. -->
+<!---->
+<!-- TAG SET SPONSOR -->
+<!-- National Center for Biotechnology -->
+<!-- Information (NCBI) -->
+<!-- National Library of Medicine (NLM) -->
+<!---->
+<!-- CREATED FOR: -->
+<!-- This DTD was created as a superset customization -->
+<!-- of the ANSI/NISO JATS Z39.96-2012 Version 1.0 -->
+<!-- Journal Article Tag Set. -->
+<!---->
+<!-- Digital archives and publishers may use the -->
+<!-- DTD as is for markup of books or book-like -->
+<!-- material for archiving and transferring -->
+<!-- such material between archives or they may create -->
+<!-- a custom XML DTD from the BITS Suite for -->
+<!-- these purposes. -->
+<!---->
+<!-- This DTD is in the public domain. An organization -->
+<!-- that wishes to create its own DTD from the suite -->
+<!-- may do so without permission from NLM. -->
+<!---->
+<!-- The suite has been set up to be extended using a -->
+<!-- new DTD file and new DTD-specific customization -->
+<!-- modules to redefine the many Parameter Entities. -->
+<!-- Do not modify the suite directly or redistribute -->
+<!-- modified versions of the suite. -->
+<!---->
+<!-- In the interest of maintaining consistency and -->
+<!-- clarity for potential users, NLM requests: -->
+<!---->
+<!-- 1. If you create a DTD from the BITS DTD Suite -->
+<!-- and intend to stay compatible with the suite, -->
+<!-- then please include the following statement -->
+<!-- as a comment in all of your DTD modules: -->
+<!-- "Created from, and fully compatible with, -->
+<!-- the Book Interchange Tag Suite (BITS). -->
+<!---->
+<!-- 2. If you alter one or more modules of the suite, -->
+<!-- then please rename your version and all its -->
+<!-- modules to avoid any confusion with the -->
+<!-- original suite. Also, please include the -->
+<!-- following statement as a comment in all your -->
+<!-- DTD modules: -->
+<!-- "Based in part on, but not fully compatible -->
+<!-- with, the Book Interchange Tag Suite -->
+<!-- (BITS)." -->
+<!---->
+<!-- ORIGINAL CREATION DATE: -->
+<!-- April 2012 -->
+<!---->
+<!-- CREATED BY: Mulberry Technologies, Inc. for the National -->
+<!-- National Center for Biotechnology Information -->
+<!-- (NCBI), a center of the US National Library of -->
+<!-- Medicine (NLM). -->
+<!---->
+<!-- The BITS Book Interchange DTD is built from the -->
+<!-- Journal Archiving and Interchange DTD of the -->
+<!-- ANSI/NISO Journal Article Tag Suite (JATS) -->
+<!-- Version 1.1d1 (Z39.96-2012). -->
+<!---->
+<!-- Suggestions for refinements and enhancements to -->
+<!-- this DTD should be sent in email to: -->
+<!-- bits@ncbi.nlm.nih.gov -->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- DTD VERSION/CHANGE HISTORY -->
+<!-- ============================================================= -->
+<!--
+  
+  Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
+  
+       =============================================================
+-->
+<!-- ============================================================= -->
+<!-- PARAMETER ENTITIES FOR ATTRIBUTE LISTS -->
+<!-- ============================================================= -->
+<!-- TABLE OF CONTENTS GROUP ATTRIBUTES -->
+<!-- Attributes for the <toc-group> element -->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="toc-group-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="content-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- TABLE OF CONTENTS ATTRIBUTES -->
+  <!-- Attributes for the <toc> element -->
+  <define name="toc-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="content-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- TABLE OF CONTENTS ENTRY ATTRIBUTES -->
+  <!-- Attributes for the <toc-entry> element -->
+  <!-- TABLE OF CONTENTS DIVISION ATTRIBUTES -->
+  <!-- Attributes for the <toc-div> element -->
+  <define name="toc-div-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="content-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- ============================================================= -->
+  <!-- TABLE OF CONTENTS AND GROUPING ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- TABLE OF CONTENTS Model -->
+  <!-- Content model for the <toc-group> element -->
+  <define name="toc-group-model">
+    <optional>
+      <ref name="title-group"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="para-level"/>
+    </zeroOrMore>
+    <oneOrMore>
+      <ref name="toc.class"/>
+    </oneOrMore>
+  </define>
+  <!-- TABLE OF CONTENTS GROUP -->
+  <!--
+    Collection of one or more Tables of Contents.
+    Collected ToCs need not be grouped inside this
+    element. This is a presentational model.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=toc-group
+  -->
+  <define name="toc-group">
+    <element name="toc-group">
+      <ref name="toc-group-attlist"/>
+      <ref name="toc-group-model"/>
+    </element>
+  </define>
+  <define name="toc-group-attlist" combine="interleave">
+    <ref name="toc-group-atts"/>
+  </define>
+  <!-- TABLE OF CONTENTS Model -->
+  <!-- Content model for the <toc> element -->
+  <define name="toc-model">
+    <optional>
+      <ref name="title-group"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="para-level-minus-x"/>
+    </zeroOrMore>
+    <oneOrMore>
+      <choice>
+        <ref name="toc-entry.class"/>
+        <ref name="toc-div.class"/>
+        <ref name="x.class"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <!-- TABLE OF CONTENTS -->
+  <!--
+    Structural, multi-level Table of Contents, 
+    typically used for capturing a ToC already 
+    present in a book being converted to this 
+    Tag Set, although it may also be used for 
+    Tables of Contents generated from book and
+    book-part metadata.
+    This is a presentational model.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=toc
+  -->
+  <define name="toc">
+    <element name="toc">
+      <ref name="toc-attlist"/>
+      <ref name="toc-model"/>
+    </element>
+  </define>
+  <define name="toc-attlist" combine="interleave">
+    <ref name="toc-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- INSIDE A TABLE OF CONTENTS ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- TABLE OF CONTENTS ENTRY MODEL -->
+  <!-- Content model for the <toc-entry> element. -->
+  <define name="toc-entry-model">
+    <optional>
+      <ref name="label"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="title"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="subtitle"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <choice>
+        <ref name="contrib-group.class"/>
+        <ref name="para-level"/>
+        <ref name="toc-abstract.class"/>
+      </choice>
+    </zeroOrMore>
+    <optional>
+      <ref name="struct-link.class"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="toc-entry.class"/>
+    </zeroOrMore>
+  </define>
+  <!-- TABLE OF CONTENTS ENTRY -->
+  <!--
+    One, typically entry in a structural 
+    Table of Contents.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=toc-entry
+  -->
+  <define name="toc-entry">
+    <element name="toc-entry">
+      <ref name="toc-entry-attlist"/>
+      <ref name="toc-entry-model"/>
+    </element>
+  </define>
+  <define name="toc-entry-attlist" combine="interleave">
+    <ref name="toc-atts"/>
+  </define>
+  <!-- TABLE OF CONTENTS DIVISION MODEL -->
+  <!-- Content model for the <toc-div> element. -->
+  <define name="toc-div-model">
+    <optional>
+      <ref name="title-group"/>
+    </optional>
+    <zeroOrMore>
+      <choice>
+        <ref name="contrib-group.class"/>
+        <ref name="para-level"/>
+      </choice>
+    </zeroOrMore>
+    <optional>
+      <ref name="struct-link.class"/>
+    </optional>
+    <oneOrMore>
+      <choice>
+        <ref name="toc-entry.class"/>
+        <ref name="toc-div.class"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <!-- TABLE OF CONTENTS DICISION -->
+  <!--
+    Division, typically for the purposes of
+    display, in a structural ToC, for example
+    a division holding the first Part of a
+    3-part book, and the titles of all the
+    chapters in that Part.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=toc-div
+  -->
+  <define name="toc-div">
+    <element name="toc-div">
+      <ref name="toc-div-attlist"/>
+      <ref name="toc-div-model"/>
+    </element>
+  </define>
+  <define name="toc-div-attlist" combine="interleave">
+    <ref name="toc-div-atts"/>
+  </define>
+</grammar>
+<!-- ================== End BITS Table of Contents Elements ====== -->

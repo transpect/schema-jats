@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <include href="JATS-oasis-namespace1.ent.rng"/>
+  <include href="JATS-common-atts1.ent.rng"/>
+  <include href="BITS-xinclude1.ent.rng"/>
+  <include href="BITS-book-oasis-custom-classes1.ent.rng"/>
+  <include href="JATS-default-classes1.ent.rng"/>
+  <include href="BITS-bookcustom-mixes1.ent.rng"/>
+  <include href="JATS-default-mixes1.ent.rng"/>
+  <include href="BITS-bookcustom-models1.ent.rng"/>
+  <include href="JATS-common1.ent.rng"/>
+  <include href="JATS-articlemeta1.ent.rng"/>
+  <include href="JATS-backmatter1.ent.rng"/>
+  <include href="JATS-display1.ent.rng"/>
+  <include href="JATS-format1.ent.rng"/>
+  <include href="JATS-funding1.ent.rng"/>
+  <include href="JATS-journalmeta1.ent.rng"/>
+  <include href="JATS-link1.ent.rng"/>
+  <include href="JATS-list1.ent.rng"/>
+  <include href="JATS-math1.ent.rng"/>
+  <include href="JATS-nlmcitation1.ent.rng"/>
+  <include href="JATS-para1.ent.rng"/>
+  <include href="JATS-phrase1.ent.rng"/>
+  <include href="JATS-references1.ent.rng"/>
+  <include href="JATS-related-object1.ent.rng"/>
+  <include href="JATS-section1.ent.rng"/>
+  <include href="JATS-mathml3-mathmlsetup1.ent.rng"/>
+  <include href="JATS-XHTMLtablesetup1.ent.rng"/>
+  <include href="JATS-oasis-tablesetup1.ent.rng"/>
+  <include href="JATS-chars1.ent.rng"/>
+  <include href="BITS-bookmeta1.ent.rng"/>
+  <include href="BITS-book-part1.ent.rng"/>
+  <include href="BITS-book-part-oasis-wrap1.ent.rng"/>
+  <include href="BITS-index1.ent.rng"/>
+  <include href="BITS-embedded-index1.ent.rng"/>
+  <include href="BITS-question-answer1.ent.rng"/>
+  <include href="BITS-toc1.ent.rng"/>
+  <include href="BITS-toc-index-nav1.ent.rng"/>
+  <define name="book-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-type"/>
+    </optional>
+    <ref name="dtd-version"/>
+    <optional>
+      <attribute name="indexed">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="xml:lang" a:defaultValue="en">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="XLINK.xmlns.attrib"/>
+    <ref name="MATHML.xmlns.attrib"/>
+    <ref name="xinclude.xmlns.attrib"/>
+    <ref name="Schema.xmlns.attrib"/>
+    <ref name="oasis.xmlns.attrib"/>
+  </define>
+  <define name="book-back-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+  </define>
+  <define name="book-body-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+  </define>
+  <define name="book-meta-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <define name="front-matter-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <define name="book-model">
+    <zeroOrMore>
+      <ref name="collection-meta"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="book-meta"/>
+    </optional>
+    <optional>
+      <ref name="front-matter"/>
+    </optional>
+    <optional>
+      <ref name="book-body"/>
+    </optional>
+    <optional>
+      <ref name="book-back"/>
+    </optional>
+  </define>
+  <define name="book">
+    <element name="book">
+      <ref name="book-attlist"/>
+      <ref name="book-model"/>
+    </element>
+  </define>
+  <define name="book-attlist" combine="interleave">
+    <ref name="book-atts"/>
+  </define>
+  <define name="book-meta-model">
+    <zeroOrMore>
+      <ref name="book-id"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="subj-group"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="book-title-group"/>
+    </optional>
+    <zeroOrMore>
+      <choice>
+        <ref name="contrib-group.class"/>
+        <ref name="aff-alternatives.class"/>
+        <ref name="x.class"/>
+      </choice>
+    </zeroOrMore>
+    <optional>
+      <ref name="author-notes"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="pub-date"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="book-volume-number"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="book-volume-id"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="issn"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="issn-l"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="isbn"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="publisher"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="edition"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="supplementary-material"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="pub-history"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="permissions"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="self-uri"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="related-article.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="abstract.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="trans-abstract"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="kwd-group.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="funding-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="conference"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="counts"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="custom-meta-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="front-back.class"/>
+    </zeroOrMore>
+  </define>
+  <define name="book-meta">
+    <element name="book-meta">
+      <ref name="book-meta-attlist"/>
+      <ref name="book-meta-model"/>
+    </element>
+  </define>
+  <define name="book-meta-attlist" combine="interleave">
+    <ref name="book-meta-atts"/>
+  </define>
+  <define name="front-matter-model">
+    <oneOrMore>
+      <choice>
+        <ref name="both-front-back.class"/>
+        <ref name="front-only.class"/>
+        <ref name="front-back.class"/>
+        <ref name="xinclude.class"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="front-matter">
+    <element name="front-matter">
+      <ref name="front-matter-attlist"/>
+      <ref name="front-matter-model"/>
+    </element>
+  </define>
+  <define name="front-matter-attlist" combine="interleave">
+    <ref name="front-matter-atts"/>
+  </define>
+  <define name="book-body-model">
+    <oneOrMore>
+      <ref name="book-part.class"/>
+    </oneOrMore>
+  </define>
+  <define name="book-body">
+    <element name="book-body">
+      <ref name="book-body-attlist"/>
+      <ref name="book-body-model"/>
+    </element>
+  </define>
+  <define name="book-body-attlist" combine="interleave">
+    <ref name="book-body-atts"/>
+  </define>
+  <define name="book-back-model">
+    <oneOrMore>
+      <choice>
+        <ref name="back-only.class"/>
+        <ref name="book-part.class"/>
+        <ref name="both-front-back.class"/>
+        <ref name="front-back.class"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="book-back">
+    <element name="book-back">
+      <ref name="book-back-attlist"/>
+      <ref name="book-back-model"/>
+    </element>
+  </define>
+  <define name="book-back-attlist" combine="interleave">
+    <ref name="book-back-atts"/>
+  </define>
+  <start>
+    <choice>
+      <ref name="nlm-citation"/>
+      <ref name="book-part-wrapper"/>
+      <ref name="journal-meta"/>
+      <ref name="article-meta"/>
+      <ref name="book"/>
+    </choice>
+  </start>
+</grammar>

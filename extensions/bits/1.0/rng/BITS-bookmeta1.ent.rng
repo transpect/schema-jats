@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!-- MODULE:    BITS Book Metadata Elements Module -->
+<!-- VERSION:   BITS 1.0 -->
+<!-- DATE:      December 2013 -->
+<!---->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- PUBLIC DOCUMENT TYPE DEFINITION -->
+<!-- TYPICAL INVOCATION -->
+<!--
+  "-//NLM//DTD BITS Book Metadata Elements Module v1.0 20131225//EN"
+  Delivered as file "BITS-bookmeta1.ent"
+-->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- SYSTEM:     Book Interchange Tag Suite -->
+<!---->
+<!-- PURPOSE:    Defines the metadata elements, attributes, and -->
+<!-- parameter entities that are shared among all BITS -->
+<!-- DTDs but not among JATS DTDs. -->
+<!---->
+<!-- TAG SET SPONSOR -->
+<!-- National Center for Biotechnology -->
+<!-- Information (NCBI) -->
+<!-- National Library of Medicine (NLM) -->
+<!---->
+<!-- CREATED FOR: -->
+<!-- This DTD was created as a superset customization -->
+<!-- of the ANSI/NISO JATS Z39.96-2012 Version 1.0 -->
+<!-- Journal Article Tag Set. -->
+<!---->
+<!-- Digital archives and publishers may use the -->
+<!-- DTD as is for markup of books or book-like -->
+<!-- material for archiving and transferring -->
+<!-- such material between archives or they may create -->
+<!-- a custom XML DTD from the BITS Suite for -->
+<!-- these purposes. -->
+<!---->
+<!-- This DTD is in the public domain. An organization -->
+<!-- that wishes to create its own DTD from the suite -->
+<!-- may do so without permission from NLM. -->
+<!---->
+<!-- The suite has been set up to be extended using a -->
+<!-- new DTD file and new DTD-specific customization -->
+<!-- modules to redefine the many Parameter Entities. -->
+<!-- Do not modify the suite directly or redistribute -->
+<!-- modified versions of the suite. -->
+<!---->
+<!-- In the interest of maintaining consistency and -->
+<!-- clarity for potential users, NLM requests: -->
+<!---->
+<!-- 1. If you create a DTD from the BITS DTD Suite -->
+<!-- and intend to stay compatible with the suite, -->
+<!-- then please include the following statement -->
+<!-- as a comment in all of your DTD modules: -->
+<!-- "Created from, and fully compatible with, -->
+<!-- the Book Interchange Tag Suite (BITS). -->
+<!---->
+<!-- 2. If you alter one or more modules of the suite, -->
+<!-- then please rename your version and all its -->
+<!-- modules to avoid any confusion with the -->
+<!-- original suite. Also, please include the -->
+<!-- following statement as a comment in all your -->
+<!-- DTD modules: -->
+<!-- "Based in part on, but not fully compatible -->
+<!-- with, the Book Interchange Tag Suite -->
+<!-- (BITS)." -->
+<!---->
+<!-- ORIGINAL CREATION DATE: -->
+<!-- April 2012 -->
+<!---->
+<!-- CREATED BY: Mulberry Technologies, Inc. for the National -->
+<!-- National Center for Biotechnology Information -->
+<!-- (NCBI), a center of the US National Library of -->
+<!-- Medicine (NLM). -->
+<!---->
+<!-- The BITS Book Interchange DTD is built from the -->
+<!-- Journal Archiving and Interchange DTD of the -->
+<!-- ANSI/NISO Journal Article Tag Suite (JATS) -->
+<!-- Version 1.1d1 (Z39.96-2012). -->
+<!---->
+<!-- Suggestions for refinements and enhancements to -->
+<!-- this DTD should be sent in email to: -->
+<!-- bits@ncbi.nlm.nih.gov -->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- DTD VERSION/CHANGE HISTORY -->
+<!-- ============================================================= -->
+<!--
+  
+  Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
+  
+       =============================================================
+-->
+<!-- ============================================================= -->
+<!-- PARAMETER ENTITIES FOR LINKING ATTRIBUTES -->
+<!-- THE FOLLOWING FEW ARE SHARED ATTRIBUTES -->
+<!-- ============================================================= -->
+<!-- XLINK LINK ATTRIBUTES -->
+<!--
+  Used for elements that are a link by
+  definition, such as the <xref> element.
+-->
+<!-- MIGHT LINK XLINK ATTRIBUTES -->
+<!--
+  Used for elements which may need to link to
+  external sources or other objects within
+  the document, but may not necessarily act
+  as a link at all.  The attribute
+  "xlink:href" identifies the object to which
+  the link points.
+-->
+<!-- ============================================================= -->
+<!-- PARAMETER ENTITIES FOR ATTRIBUTE LISTS -->
+<!-- ============================================================= -->
+<!-- BOOK IDENTIFIER ATTRIBUTES -->
+<!-- Attributes for the <book-id> element -->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="book-id-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-id-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- BOOK TITLE ATTRIBUTES -->
+  <!-- Attributes for the <book-title> element -->
+  <define name="book-title-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- BOOK TITLE GROUP ATTRIBUTES -->
+  <!-- Attributes for the <book-title-group> element -->
+  <define name="book-title-group-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- BOOK VOLUME NUMBER ATTRIBUTES -->
+  <!-- Attributes for the <book-volume-number> -->
+  <define name="book-volume-number-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- BOOK VOLUME IDENTIFIER ATTRIBUTES -->
+  <!--                     Attributes for the <book-volume-id> element -->
+  <define name="book-volume-id-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- PUBLICATION EVENT ATTRIBUTES -->
+  <!-- Attributes for the <event> element -->
+  <define name="event-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="event-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- EVENT DESCRIPTION ATTRIBUTES -->
+  <!--
+    Attributes used with the <event-desc> 
+    element.
+  -->
+  <define name="event-desc-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- PUBLICATION HISTORY ATTRIBUTES -->
+  <!-- Attributes for the <pub-history> element -->
+  <define name="pub-history-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- VOLUME IN COLLECTION ATTRIBUTES -->
+  <!--
+    Attributes for the <volume-in-collection> 
+    element
+  -->
+  <define name="volume-in-collection-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="content-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- VOLUME NUMBER ATTRIBUTES -->
+  <!-- Attributes for the <volume-number> element -->
+  <define name="volume-number-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- VOLUME TITLE ATTRIBUTES -->
+  <!-- Attributes for the <volume-title> element -->
+  <define name="volume-title-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- METADATA ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- BOOK IDENTIFIER -->
+  <!--
+    An identifier, such as a DOI or archive
+    control number, for a <book> or <book-part>. 
+    Remarks: The @book-id-type attribute
+    should be used to name the type of 
+    identifier, such as "DOI".
+       There is a separate element for the
+    ISBNs <isbn> related to a book.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-id
+  -->
+  <define name="book-id">
+    <element name="book-id">
+      <ref name="book-id-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="book-id-attlist" combine="interleave">
+    <ref name="book-id-atts"/>
+  </define>
+  <!-- BOOK TITLE ELEMENTS -->
+  <!--
+    Those elements that may mix with the data
+    characters inside a Book Title
+    <book-title>.
+  -->
+  <define name="book-title-elements">
+    <choice>
+      <ref name="all-phrase"/>
+      <ref name="break.class"/>
+    </choice>
+  </define>
+  <!-- BOOK TITLE -->
+  <!--
+    The major title of a work, excluding label
+    and any subtitles.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-title
+  -->
+  <define name="book-title">
+    <element name="book-title">
+      <ref name="book-title-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="book-title-elements"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="book-title-attlist" combine="interleave">
+    <ref name="book-title-atts"/>
+  </define>
+  <!-- BOOK TITLE GROUP MODEL -->
+  <!--
+    Content model for the <book-title-group>
+    element, which differs from NISO JATS
+    article <title-group> both by including a
+    label and by using the privileged 
+    <book-title> instead of the privileged 
+    <article-title>.
+  -->
+  <define name="book-title-group-model">
+    <optional>
+      <ref name="label"/>
+    </optional>
+    <optional>
+      <ref name="book-title"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="subtitle"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="trans-title-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="alt-title"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="fn-group"/>
+    </optional>
+  </define>
+  <!-- BOOK TITLE GROUP -->
+  <!--
+    A container element for the various title
+    elements that might be used for the book.
+    This model differs from NISO JATS article 
+    <title-group> in not starting with
+    the privileged <article-title>.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-title-group
+  -->
+  <define name="book-title-group">
+    <element name="book-title-group">
+      <ref name="book-title-group-attlist"/>
+      <ref name="book-title-group-model"/>
+    </element>
+  </define>
+  <define name="book-title-group-attlist" combine="interleave">
+    <ref name="book-title-group-atts"/>
+  </define>
+  <!-- EVENT DESCRIPTION ELEMENTS -->
+  <!--
+    Elements that may be used, along with data
+    characters inside the content model of the
+    <event-desc> element.
+  -->
+  <define name="event-desc-elements">
+    <choice>
+      <ref name="book-id"/>
+      <ref name="edition"/>
+      <ref name="date.class"/>
+      <ref name="issn"/>
+      <ref name="issn-l"/>
+      <ref name="isbn"/>
+      <ref name="pub-date"/>
+    </choice>
+  </define>
+  <!-- EVENT DESCRIPTION -->
+  <!--
+    This is a description of an event in the
+    publishing history of a book, for example, 
+    reprinting or publication of the revised online
+    edition. This text field may be as
+    simple a few words or as complex as a 
+    narrative with embedded markup.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=event-desc
+  -->
+  <define name="event-desc">
+    <element name="event-desc">
+      <ref name="event-desc-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="event-desc-elements"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="event-desc-attlist" combine="interleave">
+    <ref name="event-desc-atts"/>
+  </define>
+  <!-- EVENT MODEL -->
+  <!-- The content model for the <event> element. -->
+  <define name="event-model">
+    <optional>
+      <ref name="event-desc"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="book-id"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="edition"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="pub-date"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="date.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="issn"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="issn-l"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="isbn"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="permissions"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="notes"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="self-uri"/>
+    </zeroOrMore>
+  </define>
+  <!-- EVENT IN PUBLISHING HISTORY -->
+  <!--
+    This is a description of an event in the
+    publishing history of a book, for example, 
+    reprinting or publication of the revised online
+    edition. This text field may be as
+    simple a few words or as complex as a 
+    narrative with embedded markup.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=event
+  -->
+  <define name="event">
+    <element name="event">
+      <ref name="event-attlist"/>
+      <ref name="event-model"/>
+    </element>
+  </define>
+  <define name="event-attlist" combine="interleave">
+    <ref name="event-atts"/>
+  </define>
+  <!-- PUBLICATION HISTORY MODEL -->
+  <!--
+    The content model for the <pub-history> 
+    element.
+  -->
+  <define name="pub-history-model">
+    <zeroOrMore>
+      <ref name="date.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="event.class"/>
+    </zeroOrMore>
+  </define>
+  <!-- PUBLICATION HISTORY -->
+  <!--
+    Used as a container for events related to the
+    processing history of the document, such as
+    online publication date or reprint date.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=pub-history
+  -->
+  <define name="pub-history">
+    <element name="pub-history">
+      <ref name="pub-history-attlist"/>
+      <ref name="pub-history-model"/>
+    </element>
+  </define>
+  <define name="pub-history-attlist" combine="interleave">
+    <ref name="pub-history-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- VOLUME ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- BOOK VOLUME NUMBER ELEMENTS -->
+  <!--
+    Elements that may be used, along with data
+    characters inside the content model of the
+    <book-volume-number> element.
+  -->
+  <define name="book-volume-number-elements">
+    <ref name="just-rendition"/>
+  </define>
+  <!-- BOOK VOLUME NUMBER -->
+  <!--
+    The volume number of the book.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-volume-number
+  -->
+  <define name="book-volume-number">
+    <element name="book-volume-number">
+      <ref name="book-volume-number-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="book-volume-number-elements"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="book-volume-number-attlist" combine="interleave">
+    <ref name="book-volume-number-atts"/>
+  </define>
+  <!-- BOOK VOLUME IDENTIFIER ELEMENTS -->
+  <!--
+    Elements that may be used, along with data
+    characters inside the content model of the
+    <book-volume-id> element.
+  -->
+  <define name="book-volume-id-elements">
+    <ref name="just-rendition"/>
+  </define>
+  <!-- BOOK VOLUME NUMBER -->
+  <!--
+    The volume number of the book.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-volume-id
+  -->
+  <define name="book-volume-id">
+    <element name="book-volume-id">
+      <ref name="book-volume-id-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="book-volume-id-elements"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="book-volume-id-attlist" combine="interleave">
+    <ref name="book-volume-id-atts"/>
+  </define>
+  <!-- VOLUME IN COLLECTION MODEL -->
+  <!--
+    Content model for the <volume-in-collection>
+    element.
+  -->
+  <define name="volume-in-collection-model">
+    <optional>
+      <ref name="volume-number"/>
+    </optional>
+    <optional>
+      <ref name="volume-title"/>
+    </optional>
+  </define>
+  <!-- VOLUME IN COLLECTION -->
+  <!--
+    A container element for the volume metadata
+    for a book in a collection, for example, to
+    hold the <volume-number>.
+    Remarks: This element may repeat, with a
+    different language for each set of volume
+    data or a different usage.
+    Remarks: Volume information for books, 
+    encyclopedias, and book series is not the same 
+    kind of "volume" as the <volume> that is part 
+    of the NISO JATS journal metadata. Large works
+    such as an encyclopedia may be divided into 
+    physical, logical, or semantic volumes. A book 
+    may be published as a monograph as well 
+    as part of one or more collections or 
+    monographic series. So volume information is 
+    needed at the series (collection) level. In 
+    addition, books of articles are published that 
+    are similar to the <volume> in a journal 
+    article and such volume metadata needs to be 
+    specified at the book level.                       
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=volume-in-collection
+  -->
+  <define name="volume-in-collection">
+    <element name="volume-in-collection">
+      <ref name="volume-in-collection-attlist"/>
+      <ref name="volume-in-collection-model"/>
+    </element>
+  </define>
+  <define name="volume-in-collection-attlist" combine="interleave">
+    <ref name="volume-in-collection-atts"/>
+  </define>
+  <!-- VOLUME NUMBER ELEMENTS -->
+  <!--
+    Elements that may be used, along with data
+    characters inside the content model of the
+    <volume-number> element.
+  -->
+  <define name="volume-number-elements">
+    <ref name="subsup.class"/>
+  </define>
+  <!-- VOLUME NUMBER -->
+  <!--
+    The volume number of this book within the
+    collection.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=volume-number
+  -->
+  <define name="volume-number">
+    <element name="volume-number">
+      <ref name="volume-number-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="volume-number-elements"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="volume-number-attlist" combine="interleave">
+    <ref name="volume-number-atts"/>
+  </define>
+  <!-- VOLUME TITLE ELEMENTS -->
+  <!--
+    Elements that may be used, along with data
+    characters inside the content model of the
+    <volume-title> element.
+  -->
+  <define name="volume-title-elements">
+    <choice>
+      <ref name="all-phrase"/>
+      <ref name="break.class"/>
+    </choice>
+  </define>
+  <!-- VOLUME TITLE -->
+  <!--
+    The volume title of this book within the
+    collection. This need not be the same title
+    as the book has when published as a
+    standalone monograph.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=volume-title
+  -->
+  <define name="volume-title">
+    <element name="volume-title">
+      <ref name="volume-title-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="volume-title-elements"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="volume-title-attlist" combine="interleave">
+    <ref name="volume-title-atts"/>
+  </define>
+</grammar>
+<!-- ================== BITS Book Metadata Elements ============== -->

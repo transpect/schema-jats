@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!-- MODULE:    BITS Book Component Elements -->
+<!-- VERSION:   BITS 1.0 -->
+<!-- DATE:      December 2013 -->
+<!---->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- PUBLIC DOCUMENT TYPE DEFINITION -->
+<!-- TYPICAL INVOCATION -->
+<!--
+  "-//NLM//DTD BITS Book Component Elements v1.0 20131225//EN"
+  Delivered as file "BITS-book-part1.ent"
+-->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- SYSTEM:     Book Interchange Tag Suite -->
+<!---->
+<!-- PURPOSE:    Declare book-component-level elements such as -->
+<!-- chapter-specific or part-specific elements. -->
+<!---->
+<!-- TAG SET SPONSOR -->
+<!-- National Center for Biotechnology -->
+<!-- Information (NCBI) -->
+<!-- National Library of Medicine (NLM) -->
+<!---->
+<!-- CREATED FOR: -->
+<!-- This DTD was created as a superset customization -->
+<!-- of the ANSI/NISO JATS Z39.96-2012 Version 1.0 -->
+<!-- Journal Article Tag Set. -->
+<!---->
+<!-- Digital archives and publishers may use the -->
+<!-- DTD as is for markup of books or book-like -->
+<!-- material for archiving and transferring -->
+<!-- such material between archives or they may create -->
+<!-- a custom XML DTD from the BITS Suite for -->
+<!-- these purposes. -->
+<!---->
+<!-- This DTD is in the public domain. An organization -->
+<!-- that wishes to create its own DTD from the suite -->
+<!-- may do so without permission from NLM. -->
+<!---->
+<!-- The suite has been set up to be extended using a -->
+<!-- new DTD file and new DTD-specific customization -->
+<!-- modules to redefine the many Parameter Entities. -->
+<!-- Do not modify the suite directly or redistribute -->
+<!-- modified versions of the suite. -->
+<!---->
+<!-- In the interest of maintaining consistency and -->
+<!-- clarity for potential users, NLM requests: -->
+<!---->
+<!-- 1. If you create a DTD from the BITS DTD Suite -->
+<!-- and intend to stay compatible with the suite, -->
+<!-- then please include the following statement -->
+<!-- as a comment in all of your DTD modules: -->
+<!-- "Created from, and fully compatible with, -->
+<!-- the Book Interchange Tag Suite (BITS). -->
+<!---->
+<!-- 2. If you alter one or more modules of the suite, -->
+<!-- then please rename your version and all its -->
+<!-- modules to avoid any confusion with the -->
+<!-- original suite. Also, please include the -->
+<!-- following statement as a comment in all your -->
+<!-- DTD modules: -->
+<!-- "Based in part on, but not fully compatible -->
+<!-- with, the Book Interchange Tag Suite -->
+<!-- (BITS)." -->
+<!---->
+<!-- ORIGINAL CREATION DATE: -->
+<!-- April 2012 -->
+<!---->
+<!-- CREATED BY: Mulberry Technologies, Inc. for the National -->
+<!-- National Center for Biotechnology Information -->
+<!-- (NCBI), a center of the US National Library of -->
+<!-- Medicine (NLM). -->
+<!---->
+<!-- The BITS Book Interchange DTD is built from the -->
+<!-- Journal Archiving and Interchange DTD of the -->
+<!-- ANSI/NISO Journal Article Tag Suite (JATS) -->
+<!-- Version 1.1d1 (Z39.96-2012). -->
+<!---->
+<!-- Suggestions for refinements and enhancements to -->
+<!-- this DTD should be sent in email to: -->
+<!-- bits@ncbi.nlm.nih.gov -->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- DTD VERSION\CHANGE HISTORY -->
+<!-- ============================================================= -->
+<!--
+  
+  Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
+  
+       =============================================================
+-->
+<!-- ============================================================= -->
+<!-- PARAMETER ENTITIES FOR ATTRIBUTE VALUES -->
+<!-- ============================================================= -->
+<!-- BOOK PART LOCATIONS -->
+<!--
+  When a <book-part> is exchanged, the
+  @from-where attribute cam be used to record
+  the origin of the <book-part>, inside the
+  narrative <front-matter>, the <body>, the
+  rear matter (<back>,) or in  supplementary
+  material.
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="book-part-locations">
+    <choice>
+      <value>front-matter</value>
+      <value>body</value>
+      <value>back</value>
+      <value>supplemental</value>
+    </choice>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BOOK PART ATTRIBUTE LISTS -->
+  <!-- ============================================================= -->
+  <!-- BACK ATTRIBUTES -->
+  <!-- Attributes for the <back> element -->
+  <define name="back-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+  </define>
+  <!-- BODY ATTRIBUTES -->
+  <!-- Attributes for the <body> element -->
+  <define name="body-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+  </define>
+  <!-- BOOK PART ATTRIBUTES -->
+  <!-- Attributes used with the <book-part> element -->
+  <define name="book-part-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-part-type"/>
+    </optional>
+    <optional>
+      <attribute name="seq"/>
+    </optional>
+    <optional>
+      <attribute name="indexed">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="XLINK.xmlns.attrib"/>
+    <ref name="MATHML.xmlns.attrib"/>
+    <ref name="xinclude.xmlns.attrib"/>
+    <ref name="Schema.xmlns.attrib"/>
+  </define>
+  <!-- BODY PART METADATA ATTRIBUTES -->
+  <!--                     Attributes for the <book-part-meta> element -->
+  <define name="book-part-meta-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- FRONT MATTER PART ATTRIBUTES -->
+  <!--
+    Attributes used with the 
+    <front-matter-part> element
+  -->
+  <define name="front-matter-part-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-part-type"/>
+    </optional>
+    <optional>
+      <attribute name="seq"/>
+    </optional>
+    <optional>
+      <attribute name="indexed">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="XLINK.xmlns.attrib"/>
+    <ref name="MATHML.xmlns.attrib"/>
+    <ref name="Schema.xmlns.attrib"/>
+  </define>
+  <!-- DEDICATION ATTRIBUTES -->
+  <!--
+    Attributes used with the 
+    <dedication> element
+  -->
+  <define name="dedication-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-part-type"/>
+    </optional>
+    <optional>
+      <attribute name="seq"/>
+    </optional>
+    <optional>
+      <attribute name="indexed">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="XLINK.xmlns.attrib"/>
+    <ref name="MATHML.xmlns.attrib"/>
+    <ref name="Schema.xmlns.attrib"/>
+  </define>
+  <!-- FOREWORD PART ATTRIBUTES -->
+  <!--
+    Attributes used with the 
+    <foreword> element
+  -->
+  <define name="foreword-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-part-type"/>
+    </optional>
+    <optional>
+      <attribute name="seq"/>
+    </optional>
+    <optional>
+      <attribute name="indexed">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="XLINK.xmlns.attrib"/>
+    <ref name="MATHML.xmlns.attrib"/>
+    <ref name="Schema.xmlns.attrib"/>
+  </define>
+  <!-- NAMED BOOK PART ATTRIBUTES -->
+  <!--
+    Attributes for the <named-book-part-body> 
+    element
+  -->
+  <define name="named-book-part-body-atts">
+    <ref name="jats-common-atts"/>
+  </define>
+  <!-- PREFACE ATTRIBUTES -->
+  <!--
+    Attributes used with the 
+    <preface> element
+  -->
+  <define name="preface-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-part-type"/>
+    </optional>
+    <optional>
+      <attribute name="seq"/>
+    </optional>
+    <optional>
+      <attribute name="indexed">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+    <ref name="XLINK.xmlns.attrib"/>
+    <ref name="MATHML.xmlns.attrib"/>
+    <ref name="Schema.xmlns.attrib"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- PARAMETER ENTITIES FOR ATTRIBUTE LISTS -->
+  <!-- ============================================================= -->
+  <!-- BOOK PART IDENTIFIER ATTRIBUTES -->
+  <!-- Attributes for the <book-part-id> element -->
+  <define name="book-part-id-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="book-part-id-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- COLLECTION METADATA ATTRIBUTES -->
+  <!--
+    Attributes used with the book set or book
+    series element <collection-meta>
+  -->
+  <define name="collection-meta-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="seq"/>
+    </optional>
+    <optional>
+      <attribute name="collection-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- COLLECTION IDENTIFIER ATTRIBUTES -->
+  <!--
+    Attributes used with the book set or book
+    series element <collection-id>
+  -->
+  <define name="collection-id-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="collection-id-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BOOK PARTS (COMPONENTS SUCH AS CHAPTERS) -->
+  <!-- ============================================================= -->
+  <!-- BOOK PART MODEL -->
+  <!-- Content model for the <book-part> element -->
+  <define name="book-part-model">
+    <optional>
+      <ref name="book-part-meta"/>
+    </optional>
+    <optional>
+      <ref name="front-matter"/>
+    </optional>
+    <optional>
+      <ref name="body"/>
+    </optional>
+    <optional>
+      <ref name="back"/>
+    </optional>
+  </define>
+  <!-- ELEM  front-matter    Defined in %book.dtd; -->
+  <!-- ELEM  back            Defined in %book.dtd; -->
+  <!-- BOOK PART -->
+  <!--
+    A major organizational unit of a book,
+    typically called a "chapter", but given
+    many names in common language, for example,
+    chapter, part, unit, module, section, topic, 
+    lesson, canto, volume, or even "book".  
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-part
+  -->
+  <define name="book-part">
+    <element name="book-part">
+      <ref name="book-part-attlist"/>
+      <ref name="book-part-model"/>
+    </element>
+  </define>
+  <define name="book-part-attlist" combine="interleave">
+    <ref name="book-part-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BOOK PART METADATA ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- BOOK PART METADATA MODEL -->
+  <!--
+    Full content model for the metadata that is
+    specific to a book component, such as a
+    chapter or unit.
+  -->
+  <define name="book-part-meta-model">
+    <zeroOrMore>
+      <ref name="book-part-id"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="subj-group"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="title-group"/>
+    </optional>
+    <zeroOrMore>
+      <choice>
+        <ref name="contrib-group.class"/>
+        <ref name="aff-alternatives.class"/>
+        <ref name="x.class"/>
+      </choice>
+    </zeroOrMore>
+    <optional>
+      <ref name="author-notes"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="pub-date"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="edition"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="issn"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="issn-l"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="isbn"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="publisher"/>
+    </zeroOrMore>
+    <optional>
+      <choice>
+        <group>
+          <ref name="fpage"/>
+          <optional>
+            <ref name="lpage"/>
+          </optional>
+        </group>
+        <ref name="elocation-id"/>
+      </choice>
+    </optional>
+    <zeroOrMore>
+      <ref name="supplementary-material"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="pub-history"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="permissions"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="self-uri"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="related-article.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="abstract.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="trans-abstract"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="kwd-group.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="funding-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="conference"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="counts"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="custom-meta-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="front-back.class"/>
+    </zeroOrMore>
+  </define>
+  <!-- BOOK PART METADATA -->
+  <!--
+    Container element for the metadata that is
+    specific to the large-scale components that
+    comprise the body of a book, such as a
+    chapter, unit, part, or module (all tagged
+    as the element <book-part>).
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-part-meta
+  -->
+  <define name="book-part-meta">
+    <element name="book-part-meta">
+      <ref name="book-part-meta-attlist"/>
+      <ref name="book-part-meta-model"/>
+    </element>
+  </define>
+  <define name="book-part-meta-attlist" combine="interleave">
+    <ref name="book-part-meta-atts"/>
+  </define>
+  <!-- BOOK PART IDENTIFIER -->
+  <!--
+    An identifier, such as a DOI or archive
+    control number, for a <book-part>. 
+    Remarks: The @book-part-id-type attribute
+    should be used to name the type of 
+    identifier, such as "doi".
+       There is a separate element for the
+    ISBNs <isbn> related to a <book-part>.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-id
+  -->
+  <define name="book-part-id">
+    <element name="book-part-id">
+      <ref name="book-part-id-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="book-part-id-attlist" combine="interleave">
+    <ref name="book-part-id-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BOOK PARTS BODY ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- BOOK PART BODY MODEL -->
+  <!--
+    Content model for the <book-part-body> 
+    element
+  -->
+  <define name="body-model">
+    <zeroOrMore>
+      <ref name="para-level"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="sec-level"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="book-part.class"/>
+    </zeroOrMore>
+  </define>
+  <!-- BOOK PART BODY -->
+  <!--
+    The narrative and graphical portion of a
+    major component of a book, such as a 
+    chapter. This is the text of the chapter as
+    distinguished from the metadata such as the
+    chapter number or editors.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=body
+  -->
+  <define name="body">
+    <element name="body">
+      <ref name="body-attlist"/>
+      <ref name="body-model"/>
+    </element>
+  </define>
+  <define name="body-attlist" combine="interleave">
+    <ref name="body-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- BACK MATTER ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- BACK MATTER MODEL -->
+  <!--
+    Content model for the Back Matter element
+    which contains ancillary material such as 
+    reference lists and appendices for a book
+    part such as a chapter.
+  -->
+  <define name="back-model">
+    <optional>
+      <ref name="label"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="title"/>
+    </zeroOrMore>
+    <oneOrMore>
+      <choice>
+        <ref name="back-only.class"/>
+        <ref name="both-front-back.class"/>
+        <ref name="front-back.class"/>
+        <ref name="sec.class"/>
+        <ref name="sig-block.class"/>
+      </choice>
+    </oneOrMore>
+  </define>
+  <!-- BACK MATTER -->
+  <!--
+    Ancillary or supporting material not included
+    as part of the main textual content of a
+    book, for example appendices and lists of
+    references.
+    At first inception, this element differed from
+    the <book-back> element in NOT containing
+    book parts (<book-part>). 
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=back
+  -->
+  <define name="back">
+    <element name="back">
+      <ref name="back-attlist"/>
+      <ref name="back-model"/>
+    </element>
+  </define>
+  <define name="back-attlist" combine="interleave">
+    <ref name="back-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- COLLECTION METADATA -->
+  <!-- ============================================================= -->
+  <!-- COLLECTION METADATA -->
+  <!--
+    Content model for the collection metadata
+    element <collection-meta>.
+  -->
+  <define name="collection-meta-model">
+    <zeroOrMore>
+      <ref name="collection-id"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="subj-group"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="title-group"/>
+    </optional>
+    <zeroOrMore>
+      <choice>
+        <ref name="contrib-group.class"/>
+        <ref name="aff-alternatives.class"/>
+        <ref name="x.class"/>
+      </choice>
+    </zeroOrMore>
+    <optional>
+      <ref name="author-notes"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="pub-history"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="volume-in-collection"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="issn"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="issn-l"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="isbn"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="publisher"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="edition"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="permissions"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="self-uri"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="related-article.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="abstract.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="trans-abstract"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="kwd-group.class"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="funding-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="conference"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="counts"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="custom-meta-group"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="front-back.class"/>
+    </zeroOrMore>
+  </define>
+  <!-- COLLECTION METADATA -->
+  <!--
+    Bibliographic metadata describing a book set 
+    or series to which this book or book part
+    belongs. Note: This series metadata is not
+    complete en ought to pro dice a publishers's
+    catalog; this is just the series metadata that
+    travels with a book. By design, this will
+    NOT include metadata concerning other books
+    in the series.
+    Remarks: BITS is deliberately agnostic
+    concerning the definition of a book series
+    or a book set, leaving the question of 
+    definition to the publisher.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=collection-meta
+  -->
+  <define name="collection-meta">
+    <element name="collection-meta">
+      <ref name="collection-meta-attlist"/>
+      <ref name="collection-meta-model"/>
+    </element>
+  </define>
+  <define name="collection-meta-attlist" combine="interleave">
+    <ref name="collection-meta-atts"/>
+  </define>
+  <!-- COLLECTION IDENTIFIER -->
+  <!--
+    An identifier, such as a DOI or archive
+    control number, or LCCN for a series or set
+    of books.
+    Remarks: The @collection-id-type attribute
+    should be used to name the type of 
+    identifier, such as "lccn".
+       There is a separate element for the
+    ISBNs <isbn> related to a book.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=book-id
+  -->
+  <define name="collection-id">
+    <element name="collection-id">
+      <ref name="collection-id-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="collection-id-attlist" combine="interleave">
+    <ref name="collection-id-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- NAMED BOOK PART MODELS -->
+  <!-- ============================================================= -->
+  <!-- NAMED BOOK PART MODEL -->
+  <!--
+    Content model for the named book part
+    elements such as <foreword> and
+    <dedication>.
+  -->
+  <define name="named-book-part-model">
+    <optional>
+      <ref name="book-part-meta"/>
+    </optional>
+    <optional>
+      <ref name="named-book-part-body"/>
+    </optional>
+    <optional>
+      <ref name="back"/>
+    </optional>
+  </define>
+  <!-- NAMED BOOK PART BODY MODEL -->
+  <!--
+    Content model for the body of any of the named 
+    book parts such as the <dedication>.
+  -->
+  <define name="named-book-part-body-model">
+    <choice>
+      <group>
+        <oneOrMore>
+          <ref name="para-level"/>
+        </oneOrMore>
+        <zeroOrMore>
+          <ref name="sec-level"/>
+        </zeroOrMore>
+      </group>
+      <oneOrMore>
+        <ref name="sec-level"/>
+      </oneOrMore>
+    </choice>
+  </define>
+  <!-- NAMED BOOK PART BODY -->
+  <!--
+    Content model for the non-recursive body of
+    a named bookparts such as a <dedication> or
+    <foreword>.
+  -->
+  <define name="named-book-part-body">
+    <element name="named-book-part-body">
+      <ref name="named-book-part-body-attlist"/>
+      <ref name="named-book-part-body-model"/>
+    </element>
+  </define>
+  <define name="named-book-part-body-attlist" combine="interleave">
+    <ref name="named-book-part-body-atts"/>
+  </define>
+  <!-- ============================================================= -->
+  <!-- NAMED BOOK PART ELEMENTS -->
+  <!-- ============================================================= -->
+  <!-- FRONT MATTER PART MODEL -->
+  <!--
+    Content model for the named book part
+    <front-matter-part>.
+  -->
+  <define name="front-matter-part-model">
+    <ref name="named-book-part-model"/>
+  </define>
+  <!-- FRONT MATTER PART -->
+  <!--
+    Narrative introductory material such as
+    Preface, Foreword, Dedication,
+    Introduction to the Fifth Edition, etc.
+    This is a more simplified version of a book
+    part, being non-recursive.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=front-matter-part
+  -->
+  <define name="front-matter-part">
+    <element name="front-matter-part">
+      <ref name="front-matter-part-attlist"/>
+      <ref name="front-matter-part-model"/>
+    </element>
+  </define>
+  <define name="front-matter-part-attlist" combine="interleave">
+    <ref name="front-matter-part-atts"/>
+  </define>
+  <!-- DEDICATION MODEL -->
+  <!--
+    Content model for the named book part
+    <dedication>.
+  -->
+  <define name="dedication-model">
+    <ref name="named-book-part-model"/>
+  </define>
+  <!-- DEDICATION -->
+  <!--
+    A named book component that contains text
+    dedicating the book in some fashion.
+    Note: A publisher could choose to call this
+    component just another <book-part>, but many
+    publishers specifically identify dedications,
+    so this element was included in BITS.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=dedication
+  -->
+  <define name="dedication">
+    <element name="dedication">
+      <ref name="dedication-attlist"/>
+      <ref name="dedication-model"/>
+    </element>
+  </define>
+  <define name="dedication-attlist" combine="interleave">
+    <ref name="dedication-atts"/>
+  </define>
+  <!-- FOREWORD MODEL -->
+  <!--
+    Content model for the named book part
+    <foreword>.
+  -->
+  <define name="foreword-model">
+    <ref name="named-book-part-model"/>
+  </define>
+  <!-- FOREWORD -->
+  <!--
+    A named book component that contains text
+    which is called a "Foreword"; each publisher
+    is free to define that term.
+    Note: A publisher could choose to call this
+    component just another <book-part>, but many
+    publishers specifically identify dedications,
+    so this element was included in BITS.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=foreword
+  -->
+  <define name="foreword">
+    <element name="foreword">
+      <ref name="foreword-attlist"/>
+      <ref name="foreword-model"/>
+    </element>
+  </define>
+  <define name="foreword-attlist" combine="interleave">
+    <ref name="foreword-atts"/>
+  </define>
+  <!-- PREFACE MODEL -->
+  <!--
+    Content model for the named book part
+    <preface>.
+  -->
+  <define name="preface-model">
+    <ref name="named-book-part-model"/>
+  </define>
+  <!-- PREFACE -->
+  <!--
+    A named book component that contains text
+    which is called a "Preface"; each publisher
+    is free to define that term.
+    Note: A publisher could choose to call this
+    component just another <book-part>, but many
+    publishers specifically identify dedications,
+    so this element was included in BITS.
+    Details at:
+    http://jats.nlm.nih.gov/extensions/bits/1.0/index.html?elem=preface
+  -->
+  <define name="preface">
+    <element name="preface">
+      <ref name="preface-attlist"/>
+      <ref name="preface-model"/>
+    </element>
+  </define>
+  <define name="preface-attlist" combine="interleave">
+    <ref name="preface-atts"/>
+  </define>
+</grammar>
+<!-- ================== End Book Part Elements =================== -->
