@@ -33,6 +33,9 @@
   </define>
   <define name="article-atts">
     <optional>
+      <attribute name="xml:base"/>
+    </optional>
+    <optional>
       <attribute name="article-type"/>
     </optional>
     <ref name="dtd-version"/>
