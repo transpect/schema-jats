@@ -541,7 +541,7 @@
   DTD, it is intended for human guidance.
   but is only for human guidance in a DTD
 -->
-<grammar xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<grammar xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <define name="anyURI">
     <text/>
   </define>
@@ -595,30 +595,6 @@
     dates, such as Publication Date <pub-date>
     and History Dates <date>.
   -->
-  <define name="date-model">
-    <optional>
-      <choice>
-        <group>
-          <optional>
-            <ref name="day"/>
-          </optional>
-          <optional>
-            <ref name="month"/>
-          </optional>
-        </group>
-        <ref name="season"/>
-      </choice>
-    </optional>
-    <optional>
-      <ref name="year"/>
-    </optional>
-    <optional>
-      <ref name="era"/>
-    </optional>
-    <optional>
-      <ref name="string-date"/>
-    </optional>
-  </define>
   <!-- CONTENT MODEL FOR A STRUCTURAL SECTION -->
   <!--
     The model for a section that requires that a
@@ -653,6 +629,26 @@
     The model for a section-like structure that
     may or may not have an initial title
   -->
+  <define name="sec-opt-title-model">
+    <optional>
+      <ref name="sec-meta"/>
+    </optional>
+    <optional>
+      <ref name="label"/>
+    </optional>
+    <optional>
+      <ref name="title"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="para-level"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="sec-level"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="sec-back-matter-mix"/>
+    </zeroOrMore>
+  </define>
   <!-- ============================================================= -->
   <!-- PARAMETER ENTITIES FOR MIXED CONTENT -->
   <!-- ============================================================= -->
@@ -661,6 +657,13 @@
     Elements for use in the linking elements
     such as <xref>, <target>, and <ext-link>
   -->
+  <define name="link-elements">
+    <choice>
+      <ref name="emphasis.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- PARAGRAPH ELEMENTS -->
   <!--
     The elements that can be included along with
@@ -684,6 +687,25 @@
     Design Note: Inline mixes begin with an
     OR bar
   -->
+  <define name="p-elements">
+    <choice>
+      <ref name="address-link.class"/>
+      <ref name="article-link.class"/>
+      <ref name="block-display.class"/>
+      <ref name="block-math.class"/>
+      <ref name="citation.class"/>
+      <ref name="emphasis.class"/>
+      <ref name="funding.class"/>
+      <ref name="inline-math.class"/>
+      <ref name="inline-display-noalt.class"/>
+      <ref name="list.class"/>
+      <ref name="math.class"/>
+      <ref name="phrase.class"/>
+      <ref name="rest-of-para.class"/>
+      <ref name="simple-link.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- ============================================================= -->
   <!-- PARAMETER ENTITIES FOR TITLES -->
   <!-- ============================================================= -->
@@ -696,6 +718,12 @@
     OR bar, but since %simple-phrase; is an
     inline mix, the OR bar is already there.
   -->
+  <define name="title-elements">
+    <choice>
+      <ref name="simple-phrase"/>
+      <ref name="break.class"/>
+    </choice>
+  </define>
   <!-- ALTERNATE TITLE ELEMENTS -->
   <!--
     The elements that can be included along with
@@ -779,43 +807,6 @@
     Used for elements that are a link by
     definition, such as the <xref> element.
   -->
-  <define name="link-atts">
-    <optional>
-      <attribute name="xlink:type">
-        <choice>
-          <value>simple</value>
-        </choice>
-      </attribute>
-    </optional>
-    <attribute name="xlink:href"/>
-    <optional>
-      <attribute name="xlink:role"/>
-    </optional>
-    <optional>
-      <attribute name="xlink:title"/>
-    </optional>
-    <optional>
-      <attribute name="xlink:show">
-        <choice>
-          <value>embed</value>
-          <value>new</value>
-          <value>none</value>
-          <value>other</value>
-          <value>replace</value>
-        </choice>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="xlink:actuate">
-        <choice>
-          <value>none</value>
-          <value>onLoad</value>
-          <value>onRequest</value>
-          <value>other</value>
-        </choice>
-      </attribute>
-    </optional>
-  </define>
   <!-- MIGHT LINK XLINK ATTRIBUTES -->
   <!--
     Used for elements which may need to link to
@@ -1313,6 +1304,24 @@
   </define>
   <!-- DATE (HISTORICAL) ATTRIBUTES -->
   <!-- Attributes for the <date> element -->
+  <define name="date-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="date-type"/>
+    </optional>
+    <optional>
+      <attribute name="publication-format"/>
+    </optional>
+    <optional>
+      <attribute name="iso-8601-date"/>
+    </optional>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+  </define>
   <!-- DAY ATTRIBUTES -->
   <!-- Attributes for the <day> element -->
   <define name="day-atts">
@@ -2300,6 +2309,20 @@
   </define>
   <!-- TRANSLATED TITLE GROUP ATTRIBUTES -->
   <!-- Attribute list for the <trans-title-group> -->
+  <define name="trans-title-group-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="content-type"/>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
   <!-- URI ATTRIBUTES -->
   <!-- Attributes for the <uri> element -->
   <define name="uri-atts">
@@ -2488,6 +2511,14 @@
     Content model for the <contrib-group>
     element
   -->
+  <define name="contrib-group-model">
+    <oneOrMore>
+      <ref name="contrib.class"/>
+    </oneOrMore>
+    <zeroOrMore>
+      <ref name="contrib-info.class"/>
+    </zeroOrMore>
+  </define>
   <!-- CONTRIBUTOR GROUP -->
   <!--
     Wrapper element for information concerning
@@ -2537,6 +2568,12 @@
     inside the content model for the
     <copyright-holder> element.
   -->
+  <define name="copyright-holder-elements">
+    <choice>
+      <ref name="institution-wrap.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- COPYRIGHT HOLDER -->
   <!--
     Name of the organizational or personal
@@ -2562,6 +2599,14 @@
   </define>
   <!-- COPYRIGHT STATEMENT ELEMENTS -->
   <!-- Content model for <copyright-statement> -->
+  <define name="copyright-statement-elements">
+    <choice>
+      <ref name="address-link.class"/>
+      <ref name="emphasis.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- COPYRIGHT STATEMENT -->
   <!--
     Copyright notice or statement, suitable for
@@ -2717,6 +2762,12 @@
     OR bar, but since %simple-phrase; is an
     inline mix, the OR bar is already there.
   -->
+  <define name="article-title-elements">
+    <choice>
+      <ref name="simple-phrase"/>
+      <ref name="break.class"/>
+    </choice>
+  </define>
   <!-- ARTICLE TITLE -->
   <!--
     The title of the article in the language
@@ -2743,6 +2794,18 @@
   </define>
   <!-- AFFILIATION ELEMENTS -->
   <!-- Elements for use in the <aff> element -->
+  <define name="aff-elements">
+    <choice>
+      <ref name="address.class"/>
+      <ref name="address-link.class"/>
+      <ref name="article-link.class"/>
+      <ref name="break.class"/>
+      <ref name="emphasis.class"/>
+      <ref name="label.class"/>
+      <ref name="simple-link.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- AFFILIATION -->
   <!--
     Name of a institution or organization such as
@@ -2798,6 +2861,9 @@
   </define>
   <!-- CONFERENCE DATE ELEMENTS -->
   <!--                     Elements for use in the <conf-date> element -->
+  <define name="conf-date-elements">
+    <notAllowed/>
+  </define>
   <!-- CONFERENCE DATE -->
   <!--
     The date(s) on which the conference was held.
@@ -2827,12 +2893,6 @@
     OR bar, but since %simple-text; is an inline
     mix, the OR bar is already there.
   -->
-  <define name="conf-loc-elements">
-    <choice>
-      <ref name="simple-text"/>
-      <ref name="address.class"/>
-    </choice>
-  </define>
   <!-- CONFERENCE LOCATION -->
   <!--
     The physical location(s) of the conference.
@@ -2865,9 +2925,6 @@
     OR bar, but since %simple-text; is an inline
     mix, the OR bar is already there.
   -->
-  <define name="conf-name-elements">
-    <ref name="simple-text"/>
-  </define>
   <!-- CONFERENCE NAME -->
   <!--
     The full name of the conference, including any
@@ -2900,12 +2957,6 @@
     OR bar, but since %simple-text; is an inline
     mix, the OR bar is already there.
   -->
-  <define name="conf-sponsor-elements">
-    <choice>
-      <ref name="simple-text"/>
-      <ref name="institution-wrap.class"/>
-    </choice>
-  </define>
   <!-- CONFERENCE SPONSOR -->
   <!--
     One organization that sponsored the
@@ -2955,6 +3006,9 @@
     Elements for use with data characters inside
     the model for the <isbn> element
   -->
+  <define name="isbn-elements">
+    <notAllowed/>
+  </define>
   <!-- ISBN -->
   <!--
     International Standard Book Number
@@ -2982,6 +3036,9 @@
     Elements for use with data characters inside
     the model for the <issue> element
   -->
+  <define name="issn-elements">
+    <notAllowed/>
+  </define>
   <!-- ISSN -->
   <!--
     International Standard Serial Number
@@ -3009,6 +3066,9 @@
     Elements for use with data characters inside
     the model for the <issn-l> element
   -->
+  <define name="issn-l-elements">
+    <notAllowed/>
+  </define>
   <!-- ISSN LINKING -->
   <!--
     International Standard Linking Serial Number
@@ -3036,9 +3096,6 @@
     Elements for use with data characters inside
     the model for the <issue> element
   -->
-  <define name="issue-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- ISSUE NUMBER -->
   <!--
     The issue number, issue name, or other
@@ -3087,9 +3144,6 @@
     Elements that can be added to the text
     within the element <issue-part>
   -->
-  <define name="issue-part-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- ISSUE PART -->
   <!--
     A publisher may split an issue into two or
@@ -3108,7 +3162,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="issue-part-elements"/>
+          <ref name="just-rendition"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3121,9 +3175,6 @@
     Elements for use in the <issue-sponsor>
     element
   -->
-  <define name="issue-sponsor-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- ISSUE TITLE -->
   <!--
     Used to record the sponsor for an issue of
@@ -3138,7 +3189,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="issue-sponsor-elements"/>
+          <ref name="just-rendition"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3163,7 +3214,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="issue-title-elements"/>
+          <ref name="just-rendition"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3200,6 +3251,9 @@
     OR bar; since %rendition-plus; is an
     inline mix, the OR bar is already there.
   -->
+  <define name="role-elements">
+    <ref name="rendition-plus"/>
+  </define>
   <!-- ROLE OR FUNCTION TITLE OF CONTRIBUTOR -->
   <!--
     A title or the role of a contributor
@@ -3308,9 +3362,6 @@
     data characters inside the content model of
     a <volume>
   -->
-  <define name="volume-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- VOLUME NUMBER -->
   <!--
     NEW DEFINITION FOR RELEASE 2.0:
@@ -3342,9 +3393,6 @@
     data characters inside the content model of
     a <volume-id>
   -->
-  <define name="volume-id-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- VOLUME IDENTIFIER -->
   <!--
     Used to record an identifier such as a DOI
@@ -3361,7 +3409,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="volume-id-elements"/>
+          <ref name="just-rendition"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3375,9 +3423,6 @@
     data characters inside the content model of
     a <volume>
   -->
-  <define name="volume-series-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- VOLUME SERIES -->
   <!--
     This is a rare metadata element, intended to
@@ -3401,7 +3446,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="volume-series-elements"/>
+          <ref name="just-rendition"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -3472,14 +3517,6 @@
     The content model for the <anonymous> 
     element
   -->
-  <define name="anonymous-model">
-    <zeroOrMore>
-      <choice>
-        <text/>
-        <ref name="anonymous-elements"/>
-      </choice>
-    </zeroOrMore>
-  </define>
   <!-- ANONYMOUS -->
   <!--
     Place holder for the name of a contributor
@@ -3510,7 +3547,7 @@
     <zeroOrMore>
       <choice>
         <text/>
-        <ref name="etal-elements"/>
+        <ref name="just-rendition"/>
       </choice>
     </zeroOrMore>
   </define>
@@ -3549,12 +3586,6 @@
     an OR bar, so this inline mix beguines with
     an OR bar.
   -->
-  <define name="on-behalf-of-elements">
-    <choice>
-      <ref name="rendition-plus"/>
-      <ref name="institution-wrap.class"/>
-    </choice>
-  </define>
   <!-- ON BEHALF OF -->
   <!--
     When a contributor has written or edited
@@ -3619,12 +3650,6 @@
     OR bar; since %just-rendition; is an
     inline mix, the OR bar is already there
   -->
-  <define name="publisher-name-elements">
-    <choice>
-      <ref name="just-rendition"/>
-      <ref name="institution-wrap.class"/>
-    </choice>
-  </define>
   <!-- PUBLISHER'S NAME -->
   <!--
     Name of the publisher of the work
@@ -3745,6 +3770,9 @@
     data characters inside the content model of
     the size element.
   -->
+  <define name="size-elements">
+    <notAllowed/>
+  </define>
   <!-- SIZE -->
   <!--
     The size (such as running time, page count,
@@ -3898,6 +3926,14 @@
   <!-- ============================================================= -->
   <!-- ADDRESS MODEL -->
   <!-- Content model for the <address> element -->
+  <define name="address-model">
+    <zeroOrMore>
+      <choice>
+        <ref name="address.class"/>
+        <ref name="address-link.class"/>
+      </choice>
+    </zeroOrMore>
+  </define>
   <!-- ADDRESS/CONTACT INFORMATION -->
   <!--
     Wrapper element for contact information such
@@ -3987,6 +4023,9 @@
     data characters inside the content model of
     the country element.
   -->
+  <define name="country-elements">
+    <notAllowed/>
+  </define>
   <!-- COUNTRY: IN AN ADDRESS -->
   <!--
     The name of a country.                    
@@ -4014,6 +4053,9 @@
     Elements to be mixed with #PCDATA inside the
     <email> element
   -->
+  <define name="email-elements">
+    <notAllowed/>
+  </define>
   <!-- EMAIL ADDRESS -->
   <!--
     The email address of a person or institution.
@@ -4042,9 +4084,6 @@
     data characters inside the content model of
     a <fax>
   -->
-  <define name="fax-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- FAX NUMBER: IN AN ADDRESS -->
   <!--
     The number used to send faxes.
@@ -4165,9 +4204,6 @@
     OR bar, but since %just-rendition; is an
     inline mix, the OR bar is already there.
   -->
-  <define name="phone-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- PHONE NUMBER: IN AN ADDRESS -->
   <!--
     A callable phone number in some telephone or
@@ -4267,9 +4303,6 @@
     bar because %just-rendition; begins with an
     OR bar.
   -->
-  <define name="uri-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- URI -->
   <!--
     URI such as a URL that may be used as a
@@ -4471,6 +4504,9 @@
     data characters inside the content model of
     the <string-date> element
   -->
+  <define name="string-date-elements">
+    <ref name="date-parts.class"/>
+  </define>
   <!-- DATE AS A STRING -->
   <!--
     This is a representation of the date as a
@@ -4537,6 +4573,15 @@
     OR bar, but since %simple-text; is an inline
     mix, the OR bar is already there.
   -->
+  <define name="collab-elements">
+    <choice>
+      <ref name="simple-text"/>
+      <ref name="address.class"/>
+      <ref name="contrib-group.class"/>
+      <ref name="contrib-info.class"/>
+      <ref name="fn-link.class"/>
+    </choice>
+  </define>
   <!-- COLLABORATIVE (GROUP) AUTHOR -->
   <!--
     Used for groups of authors credited under
@@ -4658,6 +4703,9 @@
     data characters inside the content model of
     the <string-name> element
   -->
+  <define name="string-name-elements">
+    <ref name="person-name.class"/>
+  </define>
   <!-- NAME OF PERSON (UNSTRUCTURED) -->
   <!--
     Wrapper element for personal names where the
@@ -4696,9 +4744,6 @@
     an OR bar, so this inline mix begins with
     an OR bar.
   -->
-  <define name="degrees-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- DEGREE(S) -->
   <!--
     Academic degrees or professional
@@ -4728,9 +4773,6 @@
     data characters inside the content model of
     a <given-names>
   -->
-  <define name="given-names-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- GIVEN (FIRST) NAMES -->
   <!--
     Includes all given names for a person, such
@@ -4765,9 +4807,6 @@
     bar because %just-rendition; begins with an
     OR bar.
   -->
-  <define name="surname-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- SURNAME -->
   <!--
     The surname (family name) of an individual.
@@ -4801,9 +4840,6 @@
     bar because %just-rendition; begins with an
     OR bar.
   -->
-  <define name="prefix-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- PREFIX -->
   <!--
     Honorifics or other qualifiers that usually
@@ -4837,9 +4873,6 @@
     Design Note: This PE begins with an OR bar,
     it is inside %just-rendition;
   -->
-  <define name="suffix-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- SUFFIX -->
   <!--
     Text used as a suffix to a person's name, for
@@ -4875,6 +4908,9 @@
     OR bar, but since %link-elements; is an inline
     mix, the OR bar is already there.
   -->
+  <define name="ext-link-elements">
+    <ref name="link-elements"/>
+  </define>
   <!-- EXTERNAL LINK -->
   <!--
     Link to an external file, such as Medline,
@@ -4977,6 +5013,14 @@
     data characters inside the content model of
     the <label> element
   -->
+  <define name="label-elements">
+    <choice>
+      <ref name="emphasis.class"/>
+      <ref name="inline-display.class"/>
+      <ref name="inline-math.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- LABEL OF A FIGURE, REFERENCE, ETC. -->
   <!--
     The number and any prefix word that comes
@@ -5042,6 +5086,13 @@
     OR bar, but since %simple-phrase; is an
     inline mix, the OR bar is already there.
   -->
+  <define name="struct-title-elements">
+    <choice>
+      <ref name="simple-phrase"/>
+      <ref name="break.class"/>
+      <ref name="citation.class"/>
+    </choice>
+  </define>
   <!-- TITLE -->
   <!--
     Heading or title for a structural element
@@ -5071,6 +5122,15 @@
   <!-- ============================================================= -->
   <!-- RELATED ARTICLE ELEMENTS -->
   <!-- Elements allowed inside <related-article> -->
+  <define name="related-article-elements">
+    <choice>
+      <ref name="emphasis.class"/>
+      <ref name="journal-id.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="references.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- RELATED ARTICLE INFORMATION -->
   <!--
     Wrapper element, used as a container for
@@ -5105,6 +5165,17 @@
     inside the content model for the
     <sig-block> element.
   -->
+  <define name="sig-block-elements">
+    <choice>
+      <ref name="break.class"/>
+      <ref name="emphasis.class"/>
+      <ref name="just-base-display.class"/>
+      <ref name="inline-display-noalt.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="sig.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- SIGNATURE BLOCK -->
   <!--
     An area of text and graphic material placed
@@ -5136,6 +5207,14 @@
     inside the content model for the
     <sig> element.
   -->
+  <define name="sig-elements">
+    <choice>
+      <ref name="rendition-plus"/>
+      <ref name="break.class"/>
+      <ref name="inline-display-noalt.class"/>
+      <ref name="just-base-display-noalt.class"/>
+    </choice>
+  </define>
   <!-- SIGNATURE -->
   <!--
     One contributor signature and associated
@@ -5164,9 +5243,6 @@
   <!-- ============================================================= -->
   <!-- ACKNOWLEDGMENTS MODEL -->
   <!-- Content model for the <ack> element -->
-  <define name="ack-model">
-    <ref name="sec-opt-title-model"/>
-  </define>
   <!-- ACKNOWLEDGMENTS -->
   <!--
     Details at:
@@ -5260,6 +5336,9 @@
     Elements to be mixed with data characters
     inside the <long-desc> element
   -->
+  <define name="long-desc-elements">
+    <notAllowed/>
+  </define>
   <!-- LONG DESCRIPTION -->
   <!--
     Description or summary of the content of a
@@ -5355,6 +5434,9 @@
     OR bar, but since %simple-phrase; is an
     inline mix, the OR bar is already there.
   -->
+  <define name="meta-name-elements">
+    <notAllowed/>
+  </define>
   <!-- METADATA DATA NAME FOR CUSTOM METADATA -->
   <!--
     The <custom-meta> element
@@ -5388,6 +5470,9 @@
     OR bar, but since %simple-phrase; is an
     inline mix, the OR bar is already there.
   -->
+  <define name="meta-value-elements">
+    <ref name="simple-phrase"/>
+  </define>
   <!-- METADATA DATA VALUE FOR CUSTOM METADATA -->
   <!--
     The <custom-meta> element
@@ -5456,6 +5541,15 @@
   </define>
   <!-- TEXTUAL FORM ELEMENTS -->
   <!-- Model for the <textual-form> element -->
+  <define name="textual-form-elements">
+    <choice>
+      <ref name="emphasis.class"/>
+      <ref name="inline-display-noalt.class"/>
+      <ref name="math.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- TEXTUAL FORM -->
   <!--
     Container element (for use only inside
@@ -5507,6 +5601,9 @@
   </define>
   <!-- X ELEMENTS -->
   <!-- Elements for use inside the <x> element -->
+  <define name="x-elements">
+    <notAllowed/>
+  </define>
   <!-- X - GENERATED TEXT AND PUNCTUATION -->
   <!--
     A container element to hold punctuation or

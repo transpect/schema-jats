@@ -485,6 +485,19 @@
   </define>
   <!-- ARTICLE IDENTIFIER ATTRIBUTES -->
   <!-- Attributes for the <article-id> element -->
+  <define name="article-id-atts">
+    <ref name="jats-common-atts"/>
+    <optional>
+      <attribute name="pub-id-type">
+        <choice>
+          <ref name="pub-id-types"/>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="specific-use"/>
+    </optional>
+  </define>
   <!-- COMPOUND KEYWORD ATTRIBUTES -->
   <!-- Attributes for the <compound-kwd> element -->
   <define name="compound-kwd-atts">
@@ -1076,6 +1089,15 @@
     characters inside the content model of the
     <subject> element
   -->
+  <define name="subject-elements">
+    <choice>
+      <ref name="emphasis.class"/>
+      <ref name="inline-display.class"/>
+      <ref name="inline-math.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- SUBJECT NAME -->
   <!--
     The name of one of the subject groups used
@@ -1276,6 +1298,21 @@
   <!-- ============================================================= -->
   <!-- AUTHOR NOTES MODEL -->
   <!-- Content model for an <author-notes> element. -->
+  <define name="author-notes-model">
+    <optional>
+      <ref name="label"/>
+    </optional>
+    <optional>
+      <ref name="title"/>
+    </optional>
+    <oneOrMore>
+      <choice>
+        <ref name="corresp.class"/>
+        <ref name="fn-link.class"/>
+        <ref name="just-para.class"/>
+      </choice>
+    </oneOrMore>
+  </define>
   <!-- AUTHOR NOTE GROUP -->
   <!--
     Footnotes to authors or notes about authors
@@ -1307,6 +1344,20 @@
     OR bar, but since %simple-text; is an inline
     mix, the OR bar is already there.
   -->
+  <define name="product-elements">
+    <choice>
+      <ref name="article-link.class"/>
+      <ref name="break.class"/>
+      <ref name="emphasis.class"/>
+      <ref name="inline-display.class"/>
+      <ref name="inline-math.class"/>
+      <ref name="phrase.class"/>
+      <ref name="price.class"/>
+      <ref name="references.class"/>
+      <ref name="simple-link.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- PRODUCT INFORMATION -->
   <!--
     Used as a wrapper for metadata for a product
@@ -1337,6 +1388,11 @@
   <!-- ============================================================= -->
   <!-- HISTORY MODEL -->
   <!-- The content model for the <history> element -->
+  <define name="history-model">
+    <oneOrMore>
+      <ref name="date.class"/>
+    </oneOrMore>
+  </define>
   <!-- HISTORY:  DOCUMENT HISTORY -->
   <!--
     Used as a container for dates related to the
@@ -1363,6 +1419,9 @@
     Elements to be mixed with data characters
     inside the <self-uri> element
   -->
+  <define name="self-uri-elements">
+    <notAllowed/>
+  </define>
   <!-- URI FOR THIS SAME ARTICLE ONLINE -->
   <!--
     Sometimes an article is available in several
@@ -1401,12 +1460,6 @@
   <!-- ============================================================= -->
   <!-- ABSTRACT MODEL -->
   <!-- Content model for an <abstract> element -->
-  <define name="abstract-model">
-    <zeroOrMore>
-      <ref name="id.class"/>
-    </zeroOrMore>
-    <ref name="sec-opt-title-model"/>
-  </define>
   <!-- ABSTRACT -->
   <!--
     A short summation of the content of an
@@ -1449,6 +1502,17 @@
   <!-- ============================================================= -->
   <!-- KEYWORD GROUP MODEL -->
   <!-- Content model for a <kwd-group> element -->
+  <define name="kwd-group-model">
+    <optional>
+      <ref name="label"/>
+    </optional>
+    <optional>
+      <ref name="title"/>
+    </optional>
+    <oneOrMore>
+      <ref name="kwd.class"/>
+    </oneOrMore>
+  </define>
   <!-- KEYWORD GROUP -->
   <!--
     Container element for one set of keywords
@@ -1542,6 +1606,16 @@
     Elements to be mixed with data characters
     inside the <compound-kwd-part> element
   -->
+  <define name="compound-kwd-part-elements">
+    <choice>
+      <ref name="emphasis.class"/>
+      <ref name="inline-display.class"/>
+      <ref name="inline-math.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="simple-link.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- COMPOUND KEYWORD PART -->
   <!--
     This element was created to hold one
@@ -1596,9 +1670,6 @@
   </define>
   <!-- UNSTRUCTURED KEYWORD GROUP ELEMENTS -->
   <!-- Content model for a <kwd-group> element -->
-  <define name="unstructured-kwd-group-elements">
-    <ref name="just-rendition"/>
-  </define>
   <!-- UNSTRUCTURED KEYWORD GROUP -->
   <!--
     Container element for one set of keywords
@@ -1615,7 +1686,7 @@
       <zeroOrMore>
         <choice>
           <text/>
-          <ref name="unstructured-kwd-group-elements"/>
+          <ref name="just-rendition"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -1632,6 +1703,16 @@
     data characters inside the content model of
     the correspondence information.
   -->
+  <define name="corresp-elements">
+    <choice>
+      <ref name="address.class"/>
+      <ref name="address-link.class"/>
+      <ref name="emphasis.class"/>
+      <ref name="label.class"/>
+      <ref name="phrase-content.class"/>
+      <ref name="subsup.class"/>
+    </choice>
+  </define>
   <!-- CORRESPONDENCE INFORMATION -->
   <!--
     Optional element, used as a container for
@@ -1659,6 +1740,9 @@
   </define>
   <!-- PUBLICATION DATE MODEL -->
   <!-- The content model for the element <pub-date> -->
+  <define name="pub-date-model">
+    <ref name="date-model"/>
+  </define>
   <!-- PUBLICATION DATE -->
   <!--
     Date of publication or release of the
@@ -1715,9 +1799,6 @@
     OR bar, but since %simple-text; is an online
     mix, the OR bar is already there.
   -->
-  <define name="conf-acronym-elements">
-    <ref name="simple-text"/>
-  </define>
   <!-- CONFERENCE ACRONYM -->
   <!--
     The short name, popular name, or "jargon
@@ -1753,9 +1834,6 @@
     OR bar, but since %simple-text; is an inline
     mix, the OR bar is already there.
   -->
-  <define name="conf-num-elements">
-    <ref name="simple-text"/>
-  </define>
   <!-- CONFERENCE NUMBER -->
   <!--
     The sequential number of the conference.
