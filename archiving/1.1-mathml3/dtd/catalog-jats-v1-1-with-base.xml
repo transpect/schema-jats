@@ -1,8 +1,4 @@
 <?xml version="1.0"?>
-<!DOCTYPE catalog PUBLIC
-"-//OASIS//DTD Entity Resolution XML Catalog V3.0//EN"
-"http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
-
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
          prefer="public">
 
@@ -409,7 +405,7 @@ Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
 <!-- ============================================================== -->
 
 <group prefer="public" 
-       xml:base="put a real base here, such as 'file:///C:/MyWork/OurTasks/DTDs-for-JATS/'">
+       xml:base=".">
 
 <!--                    The following modules are used for ALL of   -->
 <!--                    the Journal Publishing DTDs (Blue)          -->
@@ -485,7 +481,7 @@ Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
 <!-- ============================================================== -->
 
 <group prefer="public" 
-       xml:base="put a real base here, such as 'file:///C:/MyWork/OurTasks/DTDs-for-JATS/'">
+       xml:base=".">
 
 <!--                    The following modules are used for ALL of   -->
 <!--                    the Archiving and Interchange DTDs (Green)  -->
@@ -564,7 +560,7 @@ Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
 <!-- ============================================================== -->
 
 <group prefer="public" 
-       xml:base="put a real base here, such as 'file:///C:/MyWork/OurTasks/DTDs-for-JATS/'">
+       xml:base=".">
 
 <!--                    The following modules are used for ALL of   -->
 <!--                    the Article Authoring DTDs (Pumpkin)        -->
@@ -607,7 +603,7 @@ Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
 <!-- ============================================================== -->
 
 <group prefer="public" 
-       xml:base="put a real base here, such as 'file:///C:/MyWork/OurTasks/DTDs-for-JATS/'">
+       xml:base=".">
 
 <!--                    MODULE OF MODULES                           -->
 
@@ -718,7 +714,7 @@ Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
 <!-- ============================================================== -->
 
 <group prefer="public" 
-       xml:base="put a real base here, such as 'file:///C:/MyWork/OurTasks/DTDs-for-JATS/'">
+       xml:base=".">
 
 <!-- .............................................................. -->
 <!--                    NISO ACCESS AND INDICATOR NAMESPACE         -->
@@ -868,7 +864,7 @@ Version  Reason/Occasion                   (who) vx.x (yyyy-mm-dd)
 <!--                    here as these public definitions do no harm.-->
 <!-- ============================================================== -->
 <group prefer="public" 
-       xml:base="put a real base here, such as 'file:///C:/MyWork/OurTasks/DTDs-for-JATS/'">
+       xml:base=".">
    
 <!--                    The following modules are used for all of   -->
 <!--                    the BITS DTDs (Chocolate)                   -->
