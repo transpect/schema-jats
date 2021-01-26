@@ -3,5 +3,9 @@
   
   <rewriteURI uriStartString="http://transpect.io/schema/jats/" rewritePrefix="../"/>
   <nextCatalog catalog="../publishing/1.1/dtd/catalog-jats-v1-1-with-base.xml"/>
+<!-- If you add more nextCatalogs here, the DTDs and entities will be fetched from the
+    first nextCatalog directory because all catalogs in all customizings contain the same
+    public identifier resolutions. Use nextCatalogs that point to the individual catalogs. -->
+  <!--  <nextCatalog catalog="../archiving/1.1-mathml3/dtd/catalog-jats-v1-1-with-base.xml"/>-->
   
 </catalog>
